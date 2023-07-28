@@ -1,0 +1,31 @@
+body{
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: #f2f3f5;
+  font-family: "Helvetica Neue";
+}
+
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+}
+.w-100{
+  width: 100% !important;
+}
+.stock_details{
+  /* display: flex; */
+  /* flex-direction: column; */
+  border-top: 5px ridge rgb(101, 216, 52);
+}
+.stock_data{
+  margin-bottom: 8px;
+}
+.stock_data > span {
+  display: inline-block;
+  width: 70px;
+  font-weight: bold;
+}

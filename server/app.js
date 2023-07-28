@@ -26,9 +26,20 @@ app.use(bodyParser.json());
 
 app.enable('trust proxy');
 
-app.post('/api/fetchStockData', (req, res) => {
+app.post('/api/fetchStockData', async (req, res) => {
     // YOUR CODE GOES HERE, PLEASE DO NOT EDIT ANYTHING OUTSIDE THIS FUNCTION
-    res.sendStatus(200);
+    const { symbol, date } = req.body;
+    if(!symbol | !date){
+        return res.status(400).json({message: 'Please Enter Symbol and Date!'});
+    }
+    const API_KEY = process.env.API_KEY ?? 'Rj95WQ023Y1bxIp4xKh7_iKIcdeg_L2X';
+    try {
+        const response = await axios.get(`https://api.polygon.io/v1/open-close/${symbol}/${date}?apiKey=${API_KEY}`);
+        res.status(200).json(response.data)
+    }
+    catch (err) {
+        res.status(err.response.status).json(err.response.data)
+    }
 });
 
 const port = process.env.PORT || 5000;
